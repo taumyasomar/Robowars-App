@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:robowars/screens/robowars_about_screen.dart';
-import 'package:robowars/screens/viewmorescreen.dart';
-import 'package:robowars/database/teamData.dart';
-import 'package:robowars/constants/constants.dart';
-import 'package:robowars/database/showmatch.dart';
-
+import 'package:robowars3/screens/Robosoccer.dart';
+import 'package:robowars3/screens/robowars_about_page.dart';
+import 'package:robowars3/screens/schedule_page.dart';
+import 'package:robowars3/screens/teams_screen.dart';
+import 'package:robowars3/screens/update_screen.dart';
+import 'package:robowars3/screens/viewmorescreen.dart';
+import 'package:robowars3/constants/constants.dart';
+import 'package:robowars3/database/showmatch.dart';
+import '../database/eventcard.dart';
 import '../database/socialbutton.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
 
 class Homescreen extends StatefulWidget {
   static String id = "home_screen";
@@ -23,6 +28,18 @@ class _HomescreenState extends State<Homescreen> {
     setState(() {
       _selectedIndex = index;
     });
+    if (_selectedIndex == 0) {
+      Navigator.popAndPushNamed(context, Homescreen.id);
+    }
+    if (_selectedIndex == 1) {
+      Navigator.pushNamed(context, TeamsScreen.id);
+    }
+    if (_selectedIndex == 2) {
+      Navigator.pushNamed(context, MatchScheduleScreen.id);
+    }
+    if (_selectedIndex == 3) {
+      Navigator.pushNamed(context, UpdatesScreen.id);
+    }
   }
 
   @override
@@ -42,8 +59,8 @@ class _HomescreenState extends State<Homescreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.tv),
-            label: 'Live',
+            icon: Icon(Icons.live_tv),
+            label: 'Teams',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
@@ -64,59 +81,22 @@ class _HomescreenState extends State<Homescreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Welcome Automatonist!',
-                        style: TextStyle(
-                            color: Color(0xffBC4E24),
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: 260.0,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    aspectRatio: 16 / 9,
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enableInfiniteScroll: true,
+                    autoPlayInterval: Duration(seconds: 5),
+                    viewportFraction: 1,
                   ),
-                ), //Welcome,Robowars
-                Container(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.0),
-                        child: Text(
-                          'Robowars 2024',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 26.0,
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, RobowarsAboutScreen.id);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xffBC4E24),
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          padding: EdgeInsets.all(2.0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
-                            child: Image.asset(
-                              'assets/robowars_sponsors.png',
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ), //Sponsors
+                  items: [
+                    EventCard(EventName: "Robowars",navigation: (){Navigator.pushNamed(context, RobowarsAboutPage.id);},),
+                    EventCard(EventName: "Robosoccer",navigation: (){Navigator.pushNamed(context, Robosoccer.id);},),
+                  ],
+                ),
                 ShowMatch(
                   ShowMatchInfo: 'Live Now',
                   ShowMatchNo: TeamMatchDetails[_showMatch].MatchNo,
@@ -134,102 +114,7 @@ class _HomescreenState extends State<Homescreen> {
                   ShowMatchPhotoTwo:
                       TeamMatchDetails[_showMatch + 1].imageLocation2,
                   ShowMatchIcon: null,
-                ), //Live Now
-                Container(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10.0),
-                        child: Text(
-                          'Teams',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 26.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      GridView.builder(
-                        shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount:
-                              2, // Adjust the count as per your need
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                        ),
-                        itemCount:
-                            teamdata.length, // Replace with actual item count
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                    side: BorderSide(color: Color(0xffBC4E24),width: 2)
-                                  ),
-                                  // shape: Border.all(width: 2,color: Color(0xffBC4E24),),
-                                  backgroundColor: Colors.black,
-                                  title: Text(
-                                    '${teamdata[index].name}',
-                                    style: TextStyle(color: Color(0xffBC4E24),fontWeight: FontWeight.bold,fontSize: 30.0),
-                                  ),
-                                  content: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Image(image: AssetImage('${teamdata[index].imageLocation}'),),
-                                      Text(
-                                        '${teamdata[index].about}',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    ],
-                                  ),
-                                  actions: [
-                                    TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          'Close',
-                                          style: TextStyle(
-                                              color: Color(0xffBC4E24),fontSize: 18.0,fontWeight: FontWeight.bold),
-                                        ))
-                                  ],
-                                ),
-                              );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Color(0x00),
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                      color: Color(0xffBC4E24), width: 3)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10),
-                                    child: Text('${teamdata[index].name}',
-                                        style: TextStyle(
-                                            fontSize: 22, color: Colors.white)),
-                                  ),
-                                  Expanded(
-                                      child: Image(
-                                    image: AssetImage(
-                                        '${teamdata[index].imageLocation}'),
-                                  ))
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ), //Teams
+                ), //Upcoming
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 20.0),
                   child: Column(

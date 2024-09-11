@@ -42,7 +42,7 @@ class ShowMatch extends StatelessWidget {
                         color: Color(0xffBC4E24),
                         width: 3,
                       ),
-                      borderRadius: BorderRadius.circular(10.0)),
+                      borderRadius: BorderRadius.circular(20.0)),
                   child: Column(
                     children: [
                       Row(

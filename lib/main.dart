@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:robowars/screens/homescreen.dart';
-import 'screens/robowars_about_screen.dart';
+import 'package:robowars3/screens/homescreen.dart';
 import 'screens/viewmorescreen.dart';
+import 'screens/update_screen.dart';
+import 'screens/teams_screen.dart';
+import 'screens/schedule_page.dart';
+import 'screens/robowars_about_page.dart';
+import 'screens/Robosoccer.dart';
+import 'screens/splash_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,12 +19,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: Homescreen.id,
+      initialRoute: SplashScreen.id,
 
       routes: {
+        SplashScreen.id :(context)=> SplashScreen(),
         Homescreen.id: (context)=>Homescreen(),
-        RobowarsAboutScreen.id: (context) => RobowarsAboutScreen(),
+        RobowarsAboutPage.id: (context) => RobowarsAboutPage(),
         ViewMoreScreen.id : (context) => ViewMoreScreen(),
+        UpdatesScreen.id : (context) => UpdatesScreen(),
+        TeamsScreen.id : (context) => TeamsScreen(),
+        MatchScheduleScreen.id : (context)=> MatchScheduleScreen(),
+        Robosoccer.id: (context)=> Robosoccer(),
+
       },
     );
   }
