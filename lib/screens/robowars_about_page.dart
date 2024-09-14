@@ -17,7 +17,7 @@ class _RobowarsAboutPageState extends State<RobowarsAboutPage> {
   // Single participant data, same info across categories
   final Map<String, Map<String, String>> _teamDetails = {
     'Orcus': {
-      'image': 'lib/assets/orcus.jpeg',
+      'image': 'assets/orcuslogo.jpeg',
       'description':
           'Orcus delivers fierce blows and is a powerhouse in every category.',
     },

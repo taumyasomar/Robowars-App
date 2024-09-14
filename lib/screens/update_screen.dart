@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:robowars3/screens/homescreen.dart';
 
 class UpdatesScreen extends StatelessWidget {
   static String id = "update_screen";
@@ -9,7 +8,7 @@ class UpdatesScreen extends StatelessWidget {
         date: '27th September',
         time: '9:00 AM',
         message:
-        'Battle delayed by 15 minutes due to technical checks. Stay tuned!'),
+            'Battle delayed by 15 minutes due to technical checks. Stay tuned!'),
     Update(
         date: '27th September',
         time: '9:15 AM',
@@ -26,22 +25,22 @@ class UpdatesScreen extends StatelessWidget {
         date: '27th September',
         time: '10:30 AM',
         message:
-        'The next round will start in 10 minutes. Prepare yourselves!'),
+            'The next round will start in 10 minutes. Prepare yourselves!'),
     Update(
         date: '20th September',
         time: '10:30 AM',
         message:
-        'The next round will start in 10 minutes. Prepare yourselves!'),
+            'The next round will start in 10 minutes. Prepare yourselves!'),
     Update(
         date: '27th September',
         time: '10:30 AM',
         message:
-        'The next round will start in 10 minutes. Prepare yourselves!'),
+            'The next round will start in 10 minutes. Prepare yourselves!'),
     Update(
         date: '20th September',
         time: '10:30 AM',
         message:
-        'The next round will start in 10 minutes. Prepare yourselves!'),
+            'The next round will start in 10 minutes. Prepare yourselves!'),
   ];
 
   @override
@@ -50,7 +49,11 @@ class UpdatesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "Updates",
-          style: TextStyle(color: Colors.white, fontSize: 30),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         backgroundColor: Colors.black,
         leading: IconButton(
@@ -74,7 +77,8 @@ class UpdatesScreen extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.only(bottom: 16.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center, // Aligns children to the left
+                crossAxisAlignment:
+                    CrossAxisAlignment.center, // Aligns children to the left
                 children: [
                   Text(
                     '${update.date}\n${update.time}',

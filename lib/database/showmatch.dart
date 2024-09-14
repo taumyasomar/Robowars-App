@@ -7,7 +7,12 @@ class ShowMatch extends StatelessWidget {
   final String? ShowMatchPhotoTwo;
   final Icon? ShowMatchIcon;
   const ShowMatch({
-    super.key, required this.ShowMatchInfo, required this.ShowMatchNo, required this.ShowMatchPhotoOne, required this.ShowMatchPhotoTwo, required this.ShowMatchIcon,
+    super.key,
+    required this.ShowMatchInfo,
+    required this.ShowMatchNo,
+    required this.ShowMatchPhotoOne,
+    required this.ShowMatchPhotoTwo,
+    required this.ShowMatchIcon,
   });
 
   @override
@@ -34,8 +39,8 @@ class ShowMatch extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 20.0),
                 child: Container(
-                  padding: EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 10.0),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                   decoration: BoxDecoration(
                       color: Colors.black,
                       border: Border.all(
@@ -46,8 +51,7 @@ class ShowMatch extends StatelessWidget {
                   child: Column(
                     children: [
                       Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             'Match ${ShowMatchNo}',
@@ -59,42 +63,40 @@ class ShowMatch extends StatelessWidget {
                         ],
                       ),
                       Row(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.center,
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Expanded(
                             flex: 3,
                             child: Container(
-                              child: Image(image: AssetImage('${ShowMatchPhotoOne}'),),
+                              child: Image(
+                                image: AssetImage('${ShowMatchPhotoOne}'),
+                              ),
                               decoration: BoxDecoration(
                                   color: Colors.black,
-                                  borderRadius:
-                                  BorderRadius.circular(15)),
+                                  borderRadius: BorderRadius.circular(15)),
                               padding: EdgeInsets.all(5.0),
                             ),
                           ),
                           Expanded(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 2),
+                              padding: EdgeInsets.symmetric(horizontal: 2),
                               child: Text(' VS ',
                                   style: TextStyle(
                                       fontSize: 22.0,
                                       color: Colors.white,
-                                      fontWeight:
-                                      FontWeight.bold)),
+                                      fontWeight: FontWeight.bold)),
                             ),
                             flex: 1,
                           ),
                           Expanded(
                             child: Container(
-                              child: Image(image: AssetImage('${ShowMatchPhotoTwo}'),),
+                              child: Image(
+                                image: AssetImage('${ShowMatchPhotoTwo}'),
+                              ),
                               decoration: BoxDecoration(
                                   color: Colors.black,
-                                  borderRadius:
-                                  BorderRadius.circular(15)),
+                                  borderRadius: BorderRadius.circular(15)),
                               padding: EdgeInsets.all(5.0),
                             ),
                             flex: 3,
@@ -113,16 +115,25 @@ class ShowMatch extends StatelessWidget {
   }
 }
 
-class TeamMatches{
+class TeamMatches {
   final String imageLocation1;
   final String imageLocation2;
   final int MatchNo;
 
-  TeamMatches({required this.imageLocation1,required this.imageLocation2 , required this.MatchNo});
+  TeamMatches(
+      {required this.imageLocation1,
+      required this.imageLocation2,
+      required this.MatchNo});
 }
 
 List<TeamMatches> TeamMatchDetails = [
-  TeamMatches(imageLocation1: 'assets/WhatsApp Image 2024-09-07 at 22.25.50.jpeg', imageLocation2: 'assets/WhatsApp Image 2024-09-07 at 22.26.04.jpeg', MatchNo: 1),
-  TeamMatches(imageLocation1: 'assets/WhatsApp Image 2024-09-07 at 22.26.04.jpeg', imageLocation2: 'assets/WhatsApp Image 2024-09-07 at 22.27.01.jpeg', MatchNo: 2)
+  TeamMatches(
+      imageLocation1: 'assets/orcuslogo.jpeg',
+      imageLocation2: 'assets/WhatsApp Image 2024-09-07 at 22.26.04.jpeg',
+      MatchNo: 1),
+  TeamMatches(
+      imageLocation1: 'assets/WhatsApp Image 2024-09-07 at 22.26.04.jpeg',
+      imageLocation2: 'assets/WhatsApp Image 2024-09-07 at 22.27.01.jpeg',
+      MatchNo: 2)
 ];
 //Last match should be updated and show that last match
